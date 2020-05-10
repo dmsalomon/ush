@@ -12,7 +12,7 @@ ush: ush.o util.o
 	$(CC) $^ -o $@
 
 ushd: ushd.o util.o
-	$(CC) -lutil $^ -o $@
+	$(CC) $^ -lutil -o $@
 
 %.o: %.c Makefile
 	$(CC) -MMD -MP -c $< -o $@

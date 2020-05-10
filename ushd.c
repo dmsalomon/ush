@@ -110,7 +110,7 @@ void sshserve(int cfd)
 void shell()
 {
     if (geteuid() == 0) {
-        execlp("/usr/bin/login", "/usr/bin/login", (char *) NULL);
+        execlp("/bin/login", "/bin/login", (char *) NULL);
     } else {
         char *shell = getenv("SHELL");
         if (!shell || !*shell)
