@@ -67,6 +67,9 @@ void sshserve(int cfd)
         shell();
     }
 
+    /* optionally, disconnect the child from the tty */
+    /* setsid(); */
+
     printf("pts: %s: new\n", pts);
 
     /* ferry data across the socket */
@@ -110,7 +113,7 @@ void sshserve(int cfd)
 void shell()
 {
     if (geteuid() == 0) {
-        execlp("/bin/login", "/bin/login", (char *) NULL);
+        execlp("/bin/login", "/bin/login", "-p", "--", (char *) NULL);
     } else {
         char *shell = getenv("SHELL");
         if (!shell || !*shell)
